@@ -25,12 +25,12 @@ namespace GrowAGarden.Scripts.UI
 
         public void ShowInventoryWindow()
         {
-            inventoryWindow.gameObject.SetActive(true);
+            inventoryWindow.Show();
         }
 
         public void HideInventoryWindow()
         {
-            inventoryWindow.gameObject.SetActive(false);
+            inventoryWindow.Hide();
         }
     }
 }

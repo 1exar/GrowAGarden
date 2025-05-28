@@ -27,6 +27,9 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
         {
             base.Show();
             _inventoryService.OnInventoryChanged += Refresh;
+            
+            _currentTab = InventoryTab.Fruits;
+            
             Refresh();
         }
 
