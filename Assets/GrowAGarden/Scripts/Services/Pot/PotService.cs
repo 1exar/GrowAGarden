@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
-using GrowAGarden.Scripts.Transfer.Items;
 
 namespace GrowAGarden.Scripts.Services.Pot
 {
@@ -31,15 +30,6 @@ namespace GrowAGarden.Scripts.Services.Pot
             {
                 slot.Tick();
             }
-        }
-
-        public bool TryPlantSeed(SeedData seed)
-        {
-            var empty = _potSlots.FirstOrDefault(p => !p.HasPlant);
-            if (empty == null) return false;
-
-            empty.Plant(seed);
-            return true;
         }
 
         public void HarvestAll()

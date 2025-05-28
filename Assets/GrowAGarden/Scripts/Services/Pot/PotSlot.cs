@@ -16,7 +16,7 @@ namespace GrowAGarden.Scripts.Services.Pot
         private SeedData _currentSeed;
 
         public bool HasPlant => _currentSeed != null;
-        public bool IsReady => HasPlant && _growthTime >= _currentSeed.GrowDuration;
+        public bool IsReady => HasPlant && _growthTime >= _currentSeed.growDuration;
 
         public PotSlot(PotConfig config, InventoryService.InventoryService inventoryService)
         {
@@ -37,7 +37,7 @@ namespace GrowAGarden.Scripts.Services.Pot
             if (!HasPlant || IsReady)
                 return;
 
-            _growthTime += Time.deltaTime * _config.GrowthSpeedMultiplier;
+            _growthTime += Time.deltaTime * _config.growthSpeedMultiplier;
         }
 
         public void Harvest()
@@ -58,7 +58,7 @@ namespace GrowAGarden.Scripts.Services.Pot
         private MutationType RollMutation()
         {
             float roll = UnityEngine.Random.value;
-            if (roll < _config.MutationChance)
+            if (roll < _config.mutationChance)
                 return MutationType.Golden;
 
             return MutationType.Normal;

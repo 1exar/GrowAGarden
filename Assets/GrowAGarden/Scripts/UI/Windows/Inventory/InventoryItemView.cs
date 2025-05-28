@@ -17,14 +17,14 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
 
         public void SetSeed(SeedItem data)
         {
-            nameText.text = data.SeedData.SeedName + " x" + data.Quantity;
-            icon.sprite = data.SeedData.Icon;
+            nameText.text = data.SeedData.seedName + " x" + data.Quantity;
+            icon.sprite = data.SeedData.icon;
         }
 
         public void SetFruit(FruitItem data)
         {
-            nameText.text = data.SourceSeed.SeedName;
-            icon.sprite = data.SourceSeed.Icon;
+            nameText.text = data.SourceSeed.seedName;
+            icon.sprite = data.SourceSeed.icon;
         }
 
         public void OnPointerDown(PointerEventData eventData)

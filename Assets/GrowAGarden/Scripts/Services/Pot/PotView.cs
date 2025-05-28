@@ -46,7 +46,7 @@ namespace GrowAGarden.Scripts.Services.Pot
             plantedSeed = seed;
             thisPot.Plant(seed);
 
-            seedText.text = seed.SeedName;
+            seedText.text = seed.seedName;
         }
 
         public void OnClickPlant()

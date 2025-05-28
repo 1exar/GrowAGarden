@@ -7,9 +7,9 @@ namespace GrowAGarden.Scripts.Transfer.Data
     [Serializable]
     public class FruitData
     {
-        public SeedData BasesSeedData;
-        public Sprite Icon;
-        public float Weight;
-        public MutationType Modifier;
+        public SeedData basesSeedData;
+        public Sprite icon;
+        public float weight;
+        public MutationType modifier;
     }
 }

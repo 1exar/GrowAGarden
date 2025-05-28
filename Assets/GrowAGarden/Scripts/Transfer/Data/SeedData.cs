@@ -1,6 +1,7 @@
 using System;
 using GrowAGarden.Scripts.Transfer.Enums;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GrowAGarden.Scripts.Transfer.Data
 {
@@ -8,11 +9,11 @@ namespace GrowAGarden.Scripts.Transfer.Data
     [CreateAssetMenu(fileName = "NewSeedData", menuName = "Game/SeedData")]
     public class SeedData : ScriptableObject
     {
-        public string SeedName;
-        public Sprite Icon;
-        public int BasePrice;
+        public string seedName;
+        public Sprite icon;
+        public int basePrice;
 
-        public Rarity RarityLevel;
-        public int GrowDuration;
+        public Rarity rarityLevel;
+        public int growDuration;
     }
 }

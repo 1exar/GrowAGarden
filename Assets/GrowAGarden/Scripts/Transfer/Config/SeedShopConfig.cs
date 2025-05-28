@@ -7,7 +7,7 @@ namespace GrowAGarden.Scripts.Transfer.Config
     [CreateAssetMenu(fileName = "SeedShopConfig", menuName = "Game/SeedShopConfig")]
     public class SeedShopConfig : ScriptableObject
     {
-        public float shopRefreshIntervalSeconds = 300f; // 5 минут
+        public float shopRefreshIntervalSeconds;
         public int shopSize;
 
         [System.Serializable]

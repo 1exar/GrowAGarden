@@ -5,7 +5,6 @@ using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
 using GrowAGarden.Scripts.Transfer.Enums;
 using UnityEngine;
-using Zenject;
 
 namespace GrowAGarden.Scripts.Services.SeedShop
 {
@@ -57,22 +56,22 @@ namespace GrowAGarden.Scripts.Services.SeedShop
             }
 
             OnShopUpdated?.Invoke();
-            Debug.Log("SeedShop refreshed: " + string.Join(", ", _currentShopSeeds.Select(s => s.SeedName)));
+            Debug.Log("SeedShop refreshed: " + string.Join(", ", _currentShopSeeds.Select(s => s.seedName)));
         }
 
         private SeedData GetRandomSeedByRarityWeight(Dictionary<Rarity, float> rarityWeights)
         {
-            var filteredSeeds = _allSeeds.Where(s => rarityWeights.ContainsKey(s.RarityLevel)).ToList();
+            var filteredSeeds = _allSeeds.Where(s => rarityWeights.ContainsKey(s.rarityLevel)).ToList();
             if (filteredSeeds.Count == 0) return null;
 
-            float totalWeight = filteredSeeds.Sum(s => rarityWeights[s.RarityLevel]);
+            float totalWeight = filteredSeeds.Sum(s => rarityWeights[s.rarityLevel]);
 
             float randomValue = UnityEngine.Random.Range(0f, totalWeight);
             float cumulative = 0f;
 
             foreach (var seed in filteredSeeds)
             {
-                cumulative += rarityWeights[seed.RarityLevel];
+                cumulative += rarityWeights[seed.rarityLevel];
                 if (randomValue <= cumulative)
                 {
                     return seed;

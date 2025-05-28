@@ -6,7 +6,7 @@ namespace GrowAGarden.Scripts.Transfer.Items
     public class FruitItem : BaseItem
     {
         public SeedData SourceSeed { get; }
-        public MutationType Mutation { get; }
+        private MutationType Mutation { get; }
 
         public FruitItem(SeedData seed, MutationType mutation) : base(0)
         {
@@ -16,7 +16,7 @@ namespace GrowAGarden.Scripts.Transfer.Items
 
         public float GetSellValue()
         {
-            float baseValue = SourceSeed.BasePrice;
+            float baseValue = SourceSeed.basePrice;
             float multiplier = Mutation switch
             {
                 MutationType.Golden => 2f,

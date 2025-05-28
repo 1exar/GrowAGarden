@@ -1,20 +1,19 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace GrowAGarden.Scripts.Transfer.Data
 {
     [Serializable]
     public class PlayerData
     {
-        public int Money = 100;
+        [FormerlySerializedAs("Money")] public int money = 100;
 
-        public List<SeedData> OwnedSeeds = new();
-        public List<FruitData> Inventory = new();
+        [FormerlySerializedAs("OwnedSeeds")] public List<SeedData> ownedSeeds = new();
+        [FormerlySerializedAs("Inventory")] public List<FruitData> inventory = new();
 
-        public List<string> FavoriteFruitIds = new(); // id фруктов, которые нельзя продать
+        [FormerlySerializedAs("FavoriteFruitIds")] public List<string> favoriteFruitIds = new(); // id фруктов, которые нельзя продать
 
-        public List<PotUpgradeData> PotUpgrades = new();
-
-        public List<string> SeenTutorialSteps = new(); // для туториала
+        [FormerlySerializedAs("SeenTutorialSteps")] public List<string> seenTutorialSteps = new(); // для туториала
     }
 }

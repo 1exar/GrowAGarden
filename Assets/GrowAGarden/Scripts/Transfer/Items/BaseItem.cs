@@ -4,7 +4,7 @@ namespace GrowAGarden.Scripts.Transfer.Items
     {
         public int Quantity { get; private set; }
 
-        public BaseItem(int quantity)
+        protected BaseItem(int quantity)
         {
             Quantity = quantity;
         }
