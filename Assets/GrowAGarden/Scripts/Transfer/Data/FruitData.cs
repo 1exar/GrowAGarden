@@ -1,5 +1,6 @@
 using System;
 using GrowAGarden.Scripts.Transfer.Enums;
+using UnityEngine;
 
 namespace GrowAGarden.Scripts.Transfer.Data
 {
@@ -7,7 +8,7 @@ namespace GrowAGarden.Scripts.Transfer.Data
     public class FruitData
     {
         public SeedData BasesSeedData;
-        public string PlantType;
+        public Sprite Icon;
         public float Weight;
         public MutationType Modifier;
     }

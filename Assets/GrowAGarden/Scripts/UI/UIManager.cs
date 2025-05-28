@@ -1,3 +1,4 @@
+using GrowAGarden.Scripts.UI.Windows.Inventory;
 using GrowAGarden.Scripts.UI.Windows.PlantWindow;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace GrowAGarden.Scripts.UI
     {
         [Header("Windows")]
         [SerializeField] private PlantWindow plantWindow;
+        [SerializeField] private InventoryWindow inventoryWindow;
         
         public PlantWindow ShowPlantWindow()
         {
@@ -18,6 +20,15 @@ namespace GrowAGarden.Scripts.UI
         {
             plantWindow.Hide();
         }
-        
+
+        public void ShowInventoryWindow()
+        {
+            inventoryWindow.gameObject.SetActive(true);
+        }
+
+        public void HideInventoryWindow()
+        {
+            inventoryWindow.gameObject.SetActive(false);
+        }
     }
 }

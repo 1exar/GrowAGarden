@@ -19,7 +19,6 @@ namespace GrowAGarden.Scripts.Services.Pot
         private void Start()
         {
             thisPot = new(config);
-            Debug.LogError(config.GrowthSpeedMultiplier);
         }
 
         public void PlantSeed(SeedData seed)

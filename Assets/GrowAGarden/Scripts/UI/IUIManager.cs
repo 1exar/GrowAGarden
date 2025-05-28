@@ -6,5 +6,8 @@ namespace GrowAGarden.Scripts.UI
     {
         PlantWindow ShowPlantWindow();
         void HidePlantWindow();
+        
+        void ShowInventoryWindow();
+        void HideInventoryWindow();
     }
 }

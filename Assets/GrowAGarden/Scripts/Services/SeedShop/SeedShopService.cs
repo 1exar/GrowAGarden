@@ -9,7 +9,7 @@ using Zenject;
 
 namespace GrowAGarden.Scripts.Services.SeedShop
 {
-    public class SeedShopService : ITickable, IDisposable
+    public class SeedShopService : IDisposable
     {
         private readonly List<SeedData> _allSeeds;
         private readonly SeedShopConfig _config;

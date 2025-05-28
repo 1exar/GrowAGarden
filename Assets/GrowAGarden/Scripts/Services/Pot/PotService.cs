@@ -3,11 +3,10 @@ using System.Linq;
 using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
 using GrowAGarden.Scripts.Transfer.Items;
-using Zenject;
 
 namespace GrowAGarden.Scripts.Services.Pot
 {
-    public class PotService : ITickable
+    public class PotService
     {
         private readonly List<PotSlot> _potSlots = new();
         private readonly PotConfig _config;
