@@ -3,12 +3,12 @@ using GrowAGarden.Scripts.Transfer.Enums;
 
 namespace GrowAGarden.Scripts.Transfer.Items
 {
-    public class FruitItem
+    public class FruitItem : BaseItem
     {
         public SeedData SourceSeed { get; }
         public MutationType Mutation { get; }
 
-        public FruitItem(SeedData seed, MutationType mutation)
+        public FruitItem(SeedData seed, MutationType mutation) : base(0)
         {
             SourceSeed = seed;
             Mutation = mutation;

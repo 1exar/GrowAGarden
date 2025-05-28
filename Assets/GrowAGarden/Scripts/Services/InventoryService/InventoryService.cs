@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using GrowAGarden.Scripts.Transfer.Data;
 using GrowAGarden.Scripts.Transfer.Items;
 
 namespace GrowAGarden.Scripts.Services.InventoryService
@@ -23,7 +22,7 @@ namespace GrowAGarden.Scripts.Services.InventoryService
         
         public void RemoveSeed(SeedItem seed)
         {
-            _seeds.Remove(seed);
+            if(seed.RemoveQuantity(1) == false) _seeds.Remove(seed);
             OnInventoryChanged?.Invoke();
         }
 

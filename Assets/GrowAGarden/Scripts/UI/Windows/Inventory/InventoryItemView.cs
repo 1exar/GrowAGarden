@@ -17,7 +17,7 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
 
         public void SetSeed(SeedItem data)
         {
-            nameText.text = data.SeedData.SeedName;
+            nameText.text = data.SeedData.SeedName + " x" + data.Quantity;
             icon.sprite = data.SeedData.Icon;
         }
 

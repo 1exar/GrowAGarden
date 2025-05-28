@@ -1,4 +1,3 @@
-using System;
 using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
 using GrowAGarden.Scripts.UI;

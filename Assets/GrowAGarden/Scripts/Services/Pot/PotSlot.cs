@@ -24,10 +24,12 @@ namespace GrowAGarden.Scripts.Services.Pot
             _config = config;
         }
 
-        public void Plant(SeedData seed)
+        public bool Plant(SeedData seed)
         {
+            if(HasPlant) return false;
             _currentSeed = seed;
             _growthTime = 0f;
+            return true;
         }
 
         public void Tick()

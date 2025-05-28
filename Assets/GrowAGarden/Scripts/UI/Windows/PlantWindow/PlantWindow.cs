@@ -50,10 +50,12 @@ namespace GrowAGarden.Scripts.UI.Windows.PlantWindow
 
         private void OnChoseSeed(SeedItem chosen)
         {
-            _currentPot.Plant(chosen.SeedData);
-            _inventoryService.RemoveSeed(chosen);
+            if (_currentPot.Plant(chosen.SeedData))
+            {
+                _inventoryService.RemoveSeed(chosen);
             
-            UpdateView();
+                UpdateView();
+            }
         }
     }
 }

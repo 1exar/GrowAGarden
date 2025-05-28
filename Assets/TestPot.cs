@@ -12,6 +12,6 @@ public class TestPot : MonoBehaviour
     
     private void Start()
     {
-        _inventoryService.AddSeed(new SeedItem(tempSeed,1));
+        _inventoryService.AddSeed(new SeedItem(tempSeed,10));
     }
 }

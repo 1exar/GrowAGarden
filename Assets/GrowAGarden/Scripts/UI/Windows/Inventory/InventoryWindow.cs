@@ -15,7 +15,7 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
         [SerializeField] private Transform itemRoot;
         [SerializeField] private InventoryItemView itemPrefab;
 
-        private InventoryTab _currentTab;
+        private InventoryTab _currentTab = InventoryTab.Fruits;
 
         private void Awake()
         {
