@@ -1,6 +1,6 @@
 using GrowAGarden.Scripts.Services.Pot;
 using GrowAGarden.Scripts.UI.Windows.Inventory;
-using GrowAGarden.Scripts.UI.Windows.PlantWindow;
+using GrowAGarden.Scripts.UI.Windows.Plant;
 using UnityEngine;
 
 namespace GrowAGarden.Scripts.UI

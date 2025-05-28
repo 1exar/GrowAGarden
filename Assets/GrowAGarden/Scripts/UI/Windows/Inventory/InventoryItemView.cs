@@ -11,6 +11,7 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
     {
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private Image icon;
+        [SerializeField] private Outline outline;
 
         public Action OnClick;
         private IPointerDownHandler _pointerDownHandlerImplementation;
@@ -31,5 +32,8 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
         {
             OnClick?.Invoke();
         }
+        
+        public void Select() => outline.enabled = true;
+        public void Deselect() => outline.enabled = false;
     }
 }
