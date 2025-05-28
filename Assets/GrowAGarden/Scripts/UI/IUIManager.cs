@@ -1,8 +1,10 @@
+using GrowAGarden.Scripts.UI.Windows.PlantWindow;
+
 namespace GrowAGarden.Scripts.UI
 {
     public interface IUIManager
     {
-        void ShowPlantWindow();
+        PlantWindow ShowPlantWindow();
         void HidePlantWindow();
     }
 }

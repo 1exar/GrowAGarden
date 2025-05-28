@@ -1,17 +1,22 @@
+using GrowAGarden.Scripts.UI.Windows.PlantWindow;
 using UnityEngine;
 
 namespace GrowAGarden.Scripts.UI
 {
     public class UIManager : MonoBehaviour, IUIManager
     {
-        public void ShowPlantWindow()
+        [Header("Windows")]
+        [SerializeField] private PlantWindow plantWindow;
+        
+        public PlantWindow ShowPlantWindow()
         {
-            throw new System.NotImplementedException();
+            plantWindow.Show();
+            return plantWindow;
         }
 
         public void HidePlantWindow()
         {
-            throw new System.NotImplementedException();
+            plantWindow.Hide();
         }
         
     }

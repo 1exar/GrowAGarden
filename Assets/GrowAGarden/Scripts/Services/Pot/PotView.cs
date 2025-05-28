@@ -1,6 +1,7 @@
 using System;
 using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
+using GrowAGarden.Scripts.UI;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,7 @@ namespace GrowAGarden.Scripts.Services.Pot
     {
         [SerializeField] private GameObject interactionUI;
         
+        [Inject] private IUIManager _uiManager;
         [Inject] private PotConfig config;
         private PotSlot thisPot;
         private SeedData plantedSeed;
@@ -26,6 +28,11 @@ namespace GrowAGarden.Scripts.Services.Pot
             thisPot.Plant(seed);
         }
 
+        public void OnClickPlant()
+        {
+            _uiManager.ShowPlantWindow();
+        }
+        
         public void OnTriggerEnter(Collider other)
         {
             interactionUI.SetActive(true);

@@ -7,6 +7,7 @@ using GrowAGarden.Scripts.Services.Pot;
 using GrowAGarden.Scripts.Services.SeedShop;
 using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
+using GrowAGarden.Scripts.UI;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,7 @@ namespace GrowAGarden.Scripts.Bootstrap.GameScene
         [SerializeField] private List<SeedData> allSeeds;
         [SerializeField] private SeedShopConfig seedShopConfig;
         [SerializeField] private PotConfig potConfig;
+        [SerializeField] private UIManager uiManager;
 
         public override void InstallBindings()
         {
@@ -35,6 +37,7 @@ namespace GrowAGarden.Scripts.Bootstrap.GameScene
             
             Container.BindInstance(potConfig).AsSingle();
             Container.Bind<PotService>().AsSingle();
+            Container.Bind<IUIManager>().FromInstance(uiManager).AsSingle();
         }
     }
 }
