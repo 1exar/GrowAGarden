@@ -43,9 +43,14 @@ namespace GrowAGarden.Scripts.Services.Pot
             if (!IsReady) return;
 
             var result = new FruitItem(_currentSeed, RollMutation());
-            _currentSeed = null;
             _growthTime = 0f;
             _inventoryService.AddFruit(result);
+        }
+
+        public void RemoveSeed()
+        {
+            _currentSeed = null;
+            _growthTime = 0f;
         }
 
         private MutationType RollMutation()

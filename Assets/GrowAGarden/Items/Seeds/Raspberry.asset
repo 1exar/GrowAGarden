@@ -16,3 +16,4 @@ MonoBehaviour:
   Icon: {fileID: 0}
   BasePrice: 20
   RarityLevel: 1
+  GrowDuration: 5
