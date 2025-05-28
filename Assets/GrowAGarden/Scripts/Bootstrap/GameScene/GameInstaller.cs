@@ -22,8 +22,9 @@ namespace GrowAGarden.Scripts.Bootstrap.GameScene
         [SerializeField] private SeedShopConfig seedShopConfig;
         [SerializeField] private PotConfig potConfig;
         [SerializeField] private UIManager uiManager;
-        
 
+        [SerializeField] private List<PotView> potViews;
+        
         public override void InstallBindings()
         {
             Container.Bind<IPlayerInputProvider>().FromInstance(inputProvider).AsSingle();
@@ -39,6 +40,9 @@ namespace GrowAGarden.Scripts.Bootstrap.GameScene
             
             Container.BindInstance(potConfig).AsSingle();
             Container.Bind<PotService>().AsSingle();
+            
+            Container.Bind<List<PotView>>().FromInstance(potViews).AsSingle();
+            
             Container.Bind<IUIManager>().FromInstance(uiManager).AsSingle();
             Container.Bind<InventoryService>().AsSingle().NonLazy();
         }

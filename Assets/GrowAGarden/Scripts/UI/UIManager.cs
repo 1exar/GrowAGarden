@@ -1,3 +1,4 @@
+using GrowAGarden.Scripts.Services.Pot;
 using GrowAGarden.Scripts.UI.Windows.Inventory;
 using GrowAGarden.Scripts.UI.Windows.PlantWindow;
 using UnityEngine;
@@ -10,8 +11,9 @@ namespace GrowAGarden.Scripts.UI
         [SerializeField] private PlantWindow plantWindow;
         [SerializeField] private InventoryWindow inventoryWindow;
         
-        public PlantWindow ShowPlantWindow()
+        public PlantWindow ShowPlantWindow(PotSlot potSlot)
         {
+            plantWindow.SetPot(potSlot);
             plantWindow.Show();
             return plantWindow;
         }

@@ -3,11 +3,13 @@ using GrowAGarden.Scripts.Transfer.Data;
 using GrowAGarden.Scripts.Transfer.Enums;
 using GrowAGarden.Scripts.Transfer.Items;
 using UnityEngine;
+using Zenject;
 
 namespace GrowAGarden.Scripts.Services.Pot
 {
     public class PotSlot
     {
+        private readonly InventoryService.InventoryService _inventoryService;
         private readonly PotConfig _config;
 
         private float _growthTime;
@@ -16,8 +18,9 @@ namespace GrowAGarden.Scripts.Services.Pot
         public bool HasPlant => _currentSeed != null;
         public bool IsReady => HasPlant && _growthTime >= _currentSeed.GrowDuration;
 
-        public PotSlot(PotConfig config)
+        public PotSlot(PotConfig config, InventoryService.InventoryService inventoryService)
         {
+            _inventoryService = inventoryService;
             _config = config;
         }
 
@@ -35,14 +38,14 @@ namespace GrowAGarden.Scripts.Services.Pot
             _growthTime += Time.deltaTime * _config.GrowthSpeedMultiplier;
         }
 
-        public FruitItem Harvest()
+        public void Harvest()
         {
-            if (!IsReady) return null;
+            if (!IsReady) return;
 
             var result = new FruitItem(_currentSeed, RollMutation());
             _currentSeed = null;
             _growthTime = 0f;
-            return result;
+            _inventoryService.AddFruit(result);
         }
 
         private MutationType RollMutation()

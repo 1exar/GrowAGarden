@@ -13,14 +13,16 @@ namespace GrowAGarden.Scripts.Services.Pot
 
         public IReadOnlyList<PotSlot> PotSlots => _potSlots;
 
-        public PotService(PotConfig config)
+        public PotService(PotConfig config, List<PotView> potSlots, InventoryService.InventoryService inventoryService)
         {
             _config = config;
 
-            /*for (int i = 0; i < config.InitialPotCount; i++)
+            potSlots.ForEach(view =>
             {
-                _potSlots.Add(new PotSlot(config));
-            }*/
+                PotSlot slot = new PotSlot(_config, inventoryService);
+                _potSlots.Add(slot);
+                view.SetPotSlot(slot);
+            });
         }
 
         public void Tick()
@@ -31,8 +33,6 @@ namespace GrowAGarden.Scripts.Services.Pot
             }
         }
 
-        public void AddPot(PotSlot pot) => _potSlots.Add(pot);
-        
         public bool TryPlantSeed(SeedData seed)
         {
             var empty = _potSlots.FirstOrDefault(p => !p.HasPlant);
@@ -42,20 +42,15 @@ namespace GrowAGarden.Scripts.Services.Pot
             return true;
         }
 
-        public List<FruitItem> HarvestAll()
+        public void HarvestAll()
         {
-            var harvested = new List<FruitItem>();
-
             foreach (var slot in _potSlots)
             {
                 if (slot.IsReady)
                 {
-                    var fruit = slot.Harvest();
-                    harvested.Add(fruit);
+                    slot.Harvest();
                 }
             }
-
-            return harvested;
         }
     }
 }

@@ -13,14 +13,12 @@ namespace GrowAGarden.Scripts.Services.Pot
         
         [Inject] private IUIManager _uiManager;
         [Inject] private PotConfig config;
+        
         private PotSlot thisPot;
         private SeedData plantedSeed;
-        
-        private void Start()
-        {
-            thisPot = new(config);
-        }
 
+        public void SetPotSlot(PotSlot pot) => thisPot = pot;
+        
         public void PlantSeed(SeedData seed)
         {
             plantedSeed = seed;
@@ -29,7 +27,12 @@ namespace GrowAGarden.Scripts.Services.Pot
 
         public void OnClickPlant()
         {
-            _uiManager.ShowPlantWindow();
+            _uiManager.ShowPlantWindow(thisPot);
+        }
+
+        public void OnClickHarvest()
+        {
+            thisPot.Harvest();
         }
         
         public void OnTriggerEnter(Collider other)
