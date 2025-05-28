@@ -5,15 +5,15 @@ using GrowAGarden.Scripts.Signals;
 using UnityEngine;
 using Zenject;
 
-namespace GrowAGarden.Scripts.Bootstrap
+namespace GrowAGarden.Scripts.Bootstrap.LoadingScene
 {
-    public class GameBootstrapper : IInitializable
+    public class LoadingBootstrap : IInitializable
     {
         private readonly IPlayerDataService _playerDataService;
         private readonly ISceneLoader _sceneLoader;
         private readonly SignalBus _signalBus;
 
-        public GameBootstrapper(IPlayerDataService playerDataService, ISceneLoader sceneLoader, SignalBus signalBus)
+        public LoadingBootstrap(IPlayerDataService playerDataService, ISceneLoader sceneLoader, SignalBus signalBus)
         {
             _playerDataService = playerDataService;
             _sceneLoader = sceneLoader;

@@ -4,7 +4,7 @@ using GrowAGarden.Scripts.Services.PlayerData;
 using GrowAGarden.Scripts.Signals;
 using Zenject;
 
-namespace GrowAGarden.Scripts.Bootstrap
+namespace GrowAGarden.Scripts.Bootstrap.LoadingScene
 {
     public class LoadingSceneInstaller : MonoInstaller
     {
@@ -15,7 +15,7 @@ namespace GrowAGarden.Scripts.Bootstrap
             Container.DeclareSignal<OnGameInitializedSignal>();
             Container.DeclareSignal<OnPlayerDataLoadedSignal>();
 
-            Container.BindInterfacesAndSelfTo<GameBootstrapper>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadingBootstrap>().AsSingle();
             Container.Bind<IPlayerDataService>().To<PlayerDataService>().AsSingle();
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
         }
