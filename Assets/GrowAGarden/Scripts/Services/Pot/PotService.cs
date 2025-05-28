@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GrowAGarden.Scripts.Services.Inventory;
 using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
 
@@ -12,7 +13,7 @@ namespace GrowAGarden.Scripts.Services.Pot
 
         public IReadOnlyList<PotSlot> PotSlots => _potSlots;
 
-        public PotService(PotConfig config, List<PotView> potSlots, InventoryService.InventoryService inventoryService)
+        public PotService(PotConfig config, List<PotView> potSlots, InventoryService inventoryService)
         {
             _config = config;
 

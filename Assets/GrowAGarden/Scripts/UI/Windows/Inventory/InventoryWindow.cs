@@ -1,4 +1,4 @@
-using GrowAGarden.Scripts.Services.InventoryService;
+using GrowAGarden.Scripts.Services.Inventory;
 using GrowAGarden.Scripts.Transfer.Enums;
 using UnityEngine;
 using UnityEngine.UI;

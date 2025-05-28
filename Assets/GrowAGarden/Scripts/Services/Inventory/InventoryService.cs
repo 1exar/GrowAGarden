@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using GrowAGarden.Scripts.Transfer.Items;
 
-namespace GrowAGarden.Scripts.Services.InventoryService
+namespace GrowAGarden.Scripts.Services.Inventory
 {
     public class InventoryService
     {

@@ -1,4 +1,4 @@
-using GrowAGarden.Scripts.Services.InventoryService;
+using GrowAGarden.Scripts.Services.Inventory;
 using GrowAGarden.Scripts.Services.Pot;
 using GrowAGarden.Scripts.Transfer.Items;
 using GrowAGarden.Scripts.UI.Windows.Inventory;

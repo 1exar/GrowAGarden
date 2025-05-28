@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GrowAGarden.Scripts.Player;
 using GrowAGarden.Scripts.Player.Interfaces;
 using GrowAGarden.Scripts.Services.GameLoop;
-using GrowAGarden.Scripts.Services.InventoryService;
+using GrowAGarden.Scripts.Services.Inventory;
 using GrowAGarden.Scripts.Services.Pot;
 using GrowAGarden.Scripts.Services.SeedShop;
 using GrowAGarden.Scripts.Transfer.Config;

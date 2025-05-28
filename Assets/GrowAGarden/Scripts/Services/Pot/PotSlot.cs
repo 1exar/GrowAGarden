@@ -1,3 +1,4 @@
+using GrowAGarden.Scripts.Services.Inventory;
 using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
 using GrowAGarden.Scripts.Transfer.Enums;
@@ -9,7 +10,7 @@ namespace GrowAGarden.Scripts.Services.Pot
 {
     public class PotSlot
     {
-        private readonly InventoryService.InventoryService _inventoryService;
+        private readonly InventoryService _inventoryService;
         private readonly PotConfig _config;
 
         private float _growthTime;
@@ -18,7 +19,7 @@ namespace GrowAGarden.Scripts.Services.Pot
         public bool HasPlant => _currentSeed != null;
         public bool IsReady => HasPlant && _growthTime >= _currentSeed.growDuration;
 
-        public PotSlot(PotConfig config, InventoryService.InventoryService inventoryService)
+        public PotSlot(PotConfig config, InventoryService inventoryService)
         {
             _inventoryService = inventoryService;
             _config = config;
