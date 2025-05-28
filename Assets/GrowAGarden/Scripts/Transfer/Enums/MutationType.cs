@@ -1,6 +1,6 @@
 namespace GrowAGarden.Scripts.Transfer.Enums
 {
-    public enum FruitModifier
+    public enum MutationType
     {
         Normal,
         Golden,

@@ -13,5 +13,6 @@ namespace GrowAGarden.Scripts.Transfer.Data
         public int BasePrice;
 
         public Rarity RarityLevel;
+        public int GrowDuration;
     }
 }

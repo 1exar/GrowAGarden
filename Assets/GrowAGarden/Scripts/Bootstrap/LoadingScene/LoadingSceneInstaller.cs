@@ -1,5 +1,4 @@
 using GrowAGarden.Scripts.Bootstrap.Interfaces;
-using GrowAGarden.Scripts.Services.Interfaces;
 using GrowAGarden.Scripts.Services.PlayerData;
 using GrowAGarden.Scripts.Signals;
 using Zenject;

@@ -6,9 +6,9 @@ namespace GrowAGarden.Scripts.Transfer.Data
     [Serializable]
     public class FruitData
     {
-        public string Id; // уникальный GUID
+        public SeedData BasesSeedData;
         public string PlantType;
         public float Weight;
-        public FruitModifier Modifier; // обычный / золотой / радужный
+        public MutationType Modifier;
     }
 }

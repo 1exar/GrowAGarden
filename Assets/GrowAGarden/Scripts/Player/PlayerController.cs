@@ -9,6 +9,9 @@ namespace GrowAGarden.Scripts.Player
     {
         [SerializeField] private float moveSpeed = 5f;
 
+        [SerializeField] private Transform camera;
+        [SerializeField] private Vector3 cameraOffset;
+        
         private CharacterController characterController;
         private IPlayerInputProvider inputProvider;
 
@@ -32,6 +35,7 @@ namespace GrowAGarden.Scripts.Player
                 move.Normalize();
 
             characterController.SimpleMove(move * moveSpeed);
+            camera.transform.localPosition = transform.localPosition + cameraOffset;
 
             if (move != Vector3.zero)
             {

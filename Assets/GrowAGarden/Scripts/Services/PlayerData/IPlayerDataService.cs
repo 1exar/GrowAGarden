@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace GrowAGarden.Scripts.Services.Interfaces
+namespace GrowAGarden.Scripts.Services.PlayerData
 {
     public interface IPlayerDataService
     {
