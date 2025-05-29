@@ -16,7 +16,7 @@ namespace GrowAGarden.Scripts.Services.SeedShop
         private float _timeSinceLastRefresh = 0f;
 
         private List<SeedData> _currentShopSeeds = new List<SeedData>();
-
+        public float RemainingTime { get; private set; }
         public event Action OnShopUpdated;
 
         public SeedShopService(List<SeedData> allSeeds, SeedShopConfig config)
@@ -32,6 +32,10 @@ namespace GrowAGarden.Scripts.Services.SeedShop
         public void Tick()
         {
             _timeSinceLastRefresh += Time.deltaTime;
+
+            RemainingTime = _config.shopRefreshIntervalSeconds - _timeSinceLastRefresh;
+            RemainingTime = Mathf.Max(RemainingTime, 0f); // защита от отрицательных значений
+
             if (_timeSinceLastRefresh >= _config.shopRefreshIntervalSeconds)
             {
                 RefreshShop();
