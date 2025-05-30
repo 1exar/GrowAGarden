@@ -52,7 +52,7 @@ namespace GrowAGarden.Scripts.GameInstallers
 
             #region Interfaces and Player
 
-            Container.Bind<IPlayerDataService>().To<PlayerDataService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerDataService>().AsSingle().NonLazy();
             Container.Bind<IUIManager>().FromInstance(uiManager).AsSingle();
             Container.Bind<IPlayerInputProvider>().FromInstance(inputProvider).AsSingle();
             Container.Bind<PlayerController>().FromInstance(playerController).AsSingle();
