@@ -2,6 +2,8 @@ namespace GrowAGarden.Scripts.Transfer.Items
 {
     public class BaseItem
     {
+        public string itemName;
+        
         public int Quantity { get; private set; }
 
         protected BaseItem(int quantity)

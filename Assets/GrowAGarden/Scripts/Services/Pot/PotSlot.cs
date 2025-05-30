@@ -1,16 +1,15 @@
-using GrowAGarden.Scripts.Services.Inventory;
+using GrowAGarden.Scripts.Services.PlayerData;
 using GrowAGarden.Scripts.Transfer.Config;
 using GrowAGarden.Scripts.Transfer.Data;
 using GrowAGarden.Scripts.Transfer.Enums;
 using GrowAGarden.Scripts.Transfer.Items;
 using UnityEngine;
-using Zenject;
 
 namespace GrowAGarden.Scripts.Services.Pot
 {
     public class PotSlot
     {
-        private readonly InventoryService _inventoryService;
+        private readonly IPlayerDataService _playerDataService;
         private readonly PotConfig _config;
 
         private float _growthTime;
@@ -19,9 +18,9 @@ namespace GrowAGarden.Scripts.Services.Pot
         public bool HasPlant => _currentSeed != null;
         public bool IsReady => HasPlant && _growthTime >= _currentSeed.growDuration;
 
-        public PotSlot(PotConfig config, InventoryService inventoryService)
+        public PotSlot(PotConfig config, IPlayerDataService playerDataService)
         {
-            _inventoryService = inventoryService;
+            _playerDataService = playerDataService;
             _config = config;
         }
 
@@ -47,7 +46,7 @@ namespace GrowAGarden.Scripts.Services.Pot
 
             var result = new FruitItem(_currentSeed, RollMutation());
             _growthTime = 0f;
-            _inventoryService.AddFruit(result);
+            _playerDataService.AddFruit(result);
         }
 
         public void RemoveSeed()

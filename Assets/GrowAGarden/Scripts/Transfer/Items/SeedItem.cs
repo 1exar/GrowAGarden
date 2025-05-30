@@ -8,6 +8,7 @@ namespace GrowAGarden.Scripts.Transfer.Items
 
         public SeedItem(SeedData data, int quantity) : base(quantity)
         {
+            itemName = data.name;
             SeedData = data;
         }
     }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GrowAGarden.Scripts.Player;
 using GrowAGarden.Scripts.Player.Interfaces;
 using GrowAGarden.Scripts.Services.GameLoop;
-using GrowAGarden.Scripts.Services.Inventory;
+using GrowAGarden.Scripts.Services.PlayerData;
 using GrowAGarden.Scripts.Services.Pot;
 using GrowAGarden.Scripts.Services.SeedShop;
 using GrowAGarden.Scripts.Transfer.Config;
@@ -36,7 +36,6 @@ namespace GrowAGarden.Scripts.GameInstallers
             #region Services
 
             Container.Bind<SeedShopService>().AsSingle().NonLazy();
-            Container.Bind<InventoryService>().AsSingle().NonLazy();
             Container.Bind<PotService>().AsSingle();
 
             Container.BindInterfacesTo<GameLoopService>().AsSingle().NonLazy();;
@@ -53,6 +52,7 @@ namespace GrowAGarden.Scripts.GameInstallers
 
             #region Interfaces and Player
 
+            Container.Bind<IPlayerDataService>().To<PlayerDataService>().AsSingle().NonLazy();
             Container.Bind<IUIManager>().FromInstance(uiManager).AsSingle();
             Container.Bind<IPlayerInputProvider>().FromInstance(inputProvider).AsSingle();
             Container.Bind<PlayerController>().FromInstance(playerController).AsSingle();

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c307ff277c0402e88cf604b084fbd36, type: 3}
   m_Name: SeedShopConfig
   m_EditorClassIdentifier: 
-  shopRefreshIntervalSeconds: 300
-  shopSize: 5
+  shopRefreshIntervalSeconds: 10
+  shopSize: 3
   rarityWeights:
   - rarity: 0
     weight: 1

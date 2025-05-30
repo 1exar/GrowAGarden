@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5c20afdaf64fb58e618dc3e6d29fe3, type: 3}
   m_Name: Strawberry
   m_EditorClassIdentifier: 
-  SeedName: Strawberry
-  Icon: {fileID: 0}
-  BasePrice: 10
-  RarityLevel: 0
-  GrowDuration: 5
+  seedName: Strawberry
+  icon: {fileID: 0}
+  basePrice: 4
+  rarityLevel: 3
+  growDuration: 10

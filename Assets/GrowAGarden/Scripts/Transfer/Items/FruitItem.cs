@@ -10,6 +10,7 @@ namespace GrowAGarden.Scripts.Transfer.Items
 
         public FruitItem(SeedData seed, MutationType mutation) : base(0)
         {
+            itemName = seed.name;
             SourceSeed = seed;
             Mutation = mutation;
         }

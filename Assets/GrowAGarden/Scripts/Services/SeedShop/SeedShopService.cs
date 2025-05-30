@@ -13,9 +13,9 @@ namespace GrowAGarden.Scripts.Services.SeedShop
         private readonly List<SeedData> _allSeeds;
         private readonly SeedShopConfig _config;
 
-        private float _timeSinceLastRefresh = 0f;
+        private float _timeSinceLastRefresh;
 
-        private List<SeedData> _currentShopSeeds = new List<SeedData>();
+        private List<SeedData> _currentShopSeeds = new();
         public float RemainingTime { get; private set; }
         public event Action OnShopUpdated;
 
@@ -27,14 +27,14 @@ namespace GrowAGarden.Scripts.Services.SeedShop
             RefreshShop();
         }
 
-        public IReadOnlyList<SeedData> CurrentShopSeeds => _currentShopSeeds;
+        public List<SeedData> CurrentShopSeeds => _currentShopSeeds;
 
         public void Tick()
         {
             _timeSinceLastRefresh += Time.deltaTime;
 
             RemainingTime = _config.shopRefreshIntervalSeconds - _timeSinceLastRefresh;
-            RemainingTime = Mathf.Max(RemainingTime, 0f); // защита от отрицательных значений
+            RemainingTime = Mathf.Max(RemainingTime, 0f);
 
             if (_timeSinceLastRefresh >= _config.shopRefreshIntervalSeconds)
             {
@@ -48,14 +48,26 @@ namespace GrowAGarden.Scripts.Services.SeedShop
             _currentShopSeeds.Clear();
 
             var rarityWeightDict = _config.rarityWeights.ToDictionary(rw => rw.rarity, rw => rw.weight);
-            
+
             int shopSize = _config.shopSize;
+            var availableSeeds = new List<SeedData>(_allSeeds);
+
+            var selectedSeedNames = new HashSet<string>();
+
             for (int i = 0; i < shopSize; i++)
             {
-                var seed = GetRandomSeedByRarityWeight(rarityWeightDict);
+                var seed = GetRandomUniqueSeedByRarityWeight(rarityWeightDict, availableSeeds, selectedSeedNames);
                 if (seed != null)
                 {
                     _currentShopSeeds.Add(seed);
+                    selectedSeedNames.Add(seed.seedName);
+
+                   
+                    availableSeeds.RemoveAll(s => s.seedName == seed.seedName);
+                }
+                else
+                {
+                    break;
                 }
             }
 
@@ -63,13 +75,18 @@ namespace GrowAGarden.Scripts.Services.SeedShop
             Debug.Log("SeedShop refreshed: " + string.Join(", ", _currentShopSeeds.Select(s => s.seedName)));
         }
 
-        private SeedData GetRandomSeedByRarityWeight(Dictionary<Rarity, float> rarityWeights)
+        private SeedData GetRandomUniqueSeedByRarityWeight(
+            Dictionary<Rarity, float> rarityWeights,
+            List<SeedData> availableSeeds,
+            HashSet<string> selectedNames)
         {
-            var filteredSeeds = _allSeeds.Where(s => rarityWeights.ContainsKey(s.rarityLevel)).ToList();
+            var filteredSeeds = availableSeeds
+                .Where(s => rarityWeights.ContainsKey(s.rarityLevel) && !selectedNames.Contains(s.seedName))
+                .ToList();
+
             if (filteredSeeds.Count == 0) return null;
 
             float totalWeight = filteredSeeds.Sum(s => rarityWeights[s.rarityLevel]);
-
             float randomValue = UnityEngine.Random.Range(0f, totalWeight);
             float cumulative = 0f;
 

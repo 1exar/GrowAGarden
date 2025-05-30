@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using GrowAGarden.Scripts.Services.Inventory;
+using GrowAGarden.Scripts.Services.PlayerData;
 using GrowAGarden.Scripts.Services.Pot;
+using GrowAGarden.Scripts.Transfer.Data;
 using GrowAGarden.Scripts.Transfer.Items;
 using GrowAGarden.Scripts.UI.Windows.Inventory;
 using UnityEngine;
@@ -13,13 +14,13 @@ namespace GrowAGarden.Scripts.UI.Windows.Plant
         [SerializeField] private Transform itemRoot;
         [SerializeField] private InventoryItemView itemPrefab;
         
-        [Inject] private InventoryService _inventoryService;
+        [Inject] private IPlayerDataService _playerDataService;
 
         private List<InventoryItemView> _inventoryItemViews = new();
         
         private PotSlot _currentPot;
 
-        private SeedItem selectedItem;
+        private SeedData _selectedSeed;
         
         public void SetPot(PotSlot pot)
         {
@@ -40,8 +41,8 @@ namespace GrowAGarden.Scripts.UI.Windows.Plant
 
         public void OnClickPlant()
         {
-            if(selectedItem != null)
-                TryPlant(selectedItem);
+            if(_selectedSeed != null)
+                TryPlant(_selectedSeed);
         }
         
         private void UpdateView()
@@ -51,25 +52,25 @@ namespace GrowAGarden.Scripts.UI.Windows.Plant
                 Destroy(child.gameObject);
             }
             
-            foreach (var seed in _inventoryService.GetSeeds())
+            foreach (var seed in _playerDataService.Get().seedsInInventory)
             {
                 var item = Instantiate(itemPrefab, itemRoot);
                 _inventoryItemViews.Add(item);
                 item.SetSeed(seed);
                 item.OnClick += () =>
                 {
-                    selectedItem = seed;
+                    _selectedSeed = seed.SeedData;
                     _inventoryItemViews.ForEach(i => i.Deselect());
                     item.Select();
                 };
             }
         }
 
-        private void TryPlant(SeedItem chosen)
+        private void TryPlant(SeedData chosen)
         {
-            if (_currentPot.Plant(chosen.SeedData))
+            if (_currentPot.Plant(chosen))
             {
-                _inventoryService.RemoveSeed(chosen);
+                _playerDataService.RemoveSeed(chosen);
             
                 UpdateView();
                 Hide();

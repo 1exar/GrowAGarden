@@ -1,7 +1,6 @@
 using System;
 using GrowAGarden.Scripts.Transfer.Enums;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GrowAGarden.Scripts.Transfer.Data
 {

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5c20afdaf64fb58e618dc3e6d29fe3, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  SeedName: Carrot
-  Icon: {fileID: 0}
-  BasePrice: 10
-  RarityLevel: 3
-  GrowDuration: 5
+  seedName: Carrot
+  icon: {fileID: 0}
+  basePrice: 2
+  rarityLevel: 1
+  growDuration: 10

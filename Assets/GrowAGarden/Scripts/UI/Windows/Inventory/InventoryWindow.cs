@@ -1,4 +1,4 @@
-using GrowAGarden.Scripts.Services.Inventory;
+using GrowAGarden.Scripts.Services.PlayerData;
 using GrowAGarden.Scripts.Transfer.Enums;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +8,7 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
 {
     public class InventoryWindow : BaseWindow
     {
-        [Inject] private InventoryService _inventoryService;
+        [Inject] private IPlayerDataService _playerDataService;
 
         [SerializeField] private Button seedsTabButton;
         [SerializeField] private Button fruitsTabButton;
@@ -26,17 +26,10 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
         public override void Show()
         {
             base.Show();
-            _inventoryService.OnInventoryChanged += Refresh;
             
             _currentTab = InventoryTab.Fruits;
             
             Refresh();
-        }
-
-        public override void Hide()
-        {
-            base.Hide();
-            _inventoryService.OnInventoryChanged -= Refresh;
         }
 
         private void SwitchTab(InventoryTab tab)
@@ -54,7 +47,7 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
 
             if (_currentTab == InventoryTab.Seeds)
             {
-                foreach (var seed in _inventoryService.GetSeeds())
+                foreach (var seed in _playerDataService.Get().seedsInInventory)
                 {
                     var item = Instantiate(itemPrefab, itemRoot);
                     item.SetSeed(seed);
@@ -62,7 +55,7 @@ namespace GrowAGarden.Scripts.UI.Windows.Inventory
             }
             else
             {
-                foreach (var fruit in _inventoryService.GetFruits())
+                foreach (var fruit in _playerDataService.Get().fruitsInInventory)
                 {
                     var item = Instantiate(itemPrefab, itemRoot);
                     item.SetFruit(fruit);

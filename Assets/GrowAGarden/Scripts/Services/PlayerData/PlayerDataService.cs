@@ -1,38 +1,100 @@
-using System.IO;
-using Cysharp.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using GrowAGarden.Scripts.Transfer.Data;
+using GrowAGarden.Scripts.Transfer.Items;
 using UnityEngine;
+using IInitializable = Zenject.IInitializable;
 
 namespace GrowAGarden.Scripts.Services.PlayerData
 {
-    public class PlayerDataService : IPlayerDataService
+    public class PlayerDataService : IPlayerDataService, IInitializable
     {
         private Transfer.Data.PlayerData _playerData;
 
-        public async UniTask LoadAsync()
+        private Action _onDataChanged;
+        public Action OnDataChandeg() => _onDataChanged;
+
+        public Transfer.Data.PlayerData Get() => _playerData;
+        
+        private bool IsDataContainsItem<T>(List<T> data, string itemName, out T existedItem) where T : BaseItem
         {
-            var path = GetSavePath();
-            if (File.Exists(path))
+            var item = data.Where(s => s.itemName == itemName);
+            existedItem = item.First();
+            return item.Any();
+        }
+        
+        public void AddFruit(FruitItem fruit)
+        {
+            _playerData.fruitsInInventory.Add(fruit);
+        }
+
+        public void RemoveFruit(FruitItem fruit)
+        {
+            _playerData.fruitsInInventory.Remove(fruit);
+        }
+
+        public void AddSeed(SeedData seed)
+        {
+            if (IsDataContainsItem(_playerData.seedsInInventory,seed.seedName, out SeedItem existingSeed))
             {
-                string json = await File.ReadAllTextAsync(path);
-                _playerData = JsonUtility.FromJson<Transfer.Data.PlayerData>(json);
+                existingSeed.AddQuantity(1);
             }
             else
             {
-                _playerData = new Transfer.Data.PlayerData(); // default values
+                SeedItem item = new SeedItem(seed, 1);
+                _playerData.seedsInInventory.Add(item);
             }
         }
 
-        public async UniTask SaveAsync()
+        public void RemoveSeed(SeedData seed)
         {
-            string json = JsonUtility.ToJson(_playerData);
-            await File.WriteAllTextAsync(GetSavePath(), json);
+            if (IsDataContainsItem(_playerData.seedsInInventory,seed.seedName, out SeedItem existingSeed))
+            {
+                existingSeed.RemoveQuantity(1);
+            }
+            else
+            {
+                Debug.LogError("Try to remove unexisted seed");
+            }
         }
 
-        public Transfer.Data.PlayerData Get() => _playerData;
-
-        private string GetSavePath()
+        public bool TrySpendMoney(int money)
         {
-            return Path.Combine(Application.persistentDataPath, "save.json");
+            if (_playerData.money < money)
+            {
+                return false;
+            }
+            else
+            {
+                _playerData.money -= money;
+                Save();
+                return true;
+            }
+        }
+
+        public void Load()
+        {
+            if (PlayerPrefs.HasKey("save"))
+            {
+                _playerData = JsonUtility.FromJson<Transfer.Data.PlayerData>("save");
+            }
+            else
+            {
+                _playerData = new Transfer.Data.PlayerData();
+            }
+        }
+
+        public void Save()
+        {
+            string json = JsonUtility.ToJson(_playerData);
+            PlayerPrefs.SetString("save", json);
+            _onDataChanged?.Invoke();
+        }
+
+        public void Initialize()
+        { 
+            Load();   
         }
     }
 }

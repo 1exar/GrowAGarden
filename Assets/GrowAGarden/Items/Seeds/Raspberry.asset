@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5c20afdaf64fb58e618dc3e6d29fe3, type: 3}
   m_Name: Raspberry
   m_EditorClassIdentifier: 
-  SeedName: Raspberry
-  Icon: {fileID: 0}
-  BasePrice: 20
-  RarityLevel: 1
-  GrowDuration: 5
+  seedName: Raspbery
+  icon: {fileID: 0}
+  basePrice: 3
+  rarityLevel: 2
+  growDuration: 10
