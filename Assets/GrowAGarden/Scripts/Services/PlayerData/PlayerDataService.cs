@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using GrowAGarden.Scripts.Transfer.Data;
+using GrowAGarden.Scripts.Transfer.Enums;
 using GrowAGarden.Scripts.Transfer.Items;
 using UnityEngine;
-using IInitializable = Zenject.IInitializable;
+using Zenject;
 
 namespace GrowAGarden.Scripts.Services.PlayerData
 {
@@ -27,11 +28,13 @@ namespace GrowAGarden.Scripts.Services.PlayerData
         public void AddFruit(FruitItem fruit)
         {
             _playerData.fruitsInInventory.Add(fruit);
+            Save();
         }
 
         public void RemoveFruit(FruitItem fruit)
         {
             _playerData.fruitsInInventory.Remove(fruit);
+            Save();
         }
 
         public void AddSeed(SeedData seed)
@@ -45,6 +48,8 @@ namespace GrowAGarden.Scripts.Services.PlayerData
                 SeedItem item = new SeedItem(seed, 1);
                 _playerData.seedsInInventory.Add(item);
             }
+            
+            Save();
         }
 
         public void RemoveSeed(SeedData seed)
@@ -57,6 +62,8 @@ namespace GrowAGarden.Scripts.Services.PlayerData
             {
                 Debug.LogError("Try to remove unexisted seed");
             }
+            
+            Save();
         }
 
         public bool TrySpendMoney(int money)
